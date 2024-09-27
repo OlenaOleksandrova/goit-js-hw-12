@@ -8,15 +8,21 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
+   
+<form class="search-form">
+  <input type="text" name="query" placeholder="Search images..." required />
+  <button type="submit">Search</button>
+</form>
+<div class="loader" style="display: none">
+  Loading images, please wait...
+</div>
 
-    <main>
-      <!-- Loads the specified .html file -->
-      <load src="./partials/vite-promo.html" />
-      <load src="./partials/badges.html" />
-    </main>
+<div class="gallery"></div>
+  <button class="btn js-load-more" type="submit">Load more</button>
 
-    <load src="./partials/footer.html" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script type="module" src="./js/pixabay-api.js"></script>
+      <script type="module" src="./js/render-functions.js"></script>
 
     <script type="module" src="./main.js"></script>
   </body>
