@@ -13,12 +13,13 @@
   <input type="text" name="query" placeholder="Search images..." required />
   <button type="submit">Search</button>
 </form>
-<div class="loader" style="display: none">
+<!-- <div class="loader" style="display: none">
   Loading images, please wait...
-</div>
+</div> -->
 
 <div class="gallery"></div>
-  <button class="btn js-load-more" type="submit">Load more</button>
+
+  <button class="btn is-hidden  js-load-more" type="submit" >Load more</button>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script type="module" src="./js/pixabay-api.js"></script>

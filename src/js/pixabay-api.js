@@ -25,6 +25,7 @@ export async function fetchImages(query, currentPage = 1) {
     } catch (error) {
         console.error('Error fetching images:', error);
     }
+
 }
     
 

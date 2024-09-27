@@ -53,6 +53,7 @@ body {
     gap: 24px;
     row-gap: 24px;
     margin: 0 auto;
+    margin-bottom: 32px;
 }
 
 .gallery-item {
@@ -67,7 +68,7 @@ body {
     transition: transform 0.3s ease;
     overflow: hidden;
     padding: 15px;
-    flex: 0 1 calc(25% - 20px);
+    flex: 0 1 calc(30% - 24px);
 }
 
 
@@ -145,4 +146,8 @@ body {
 
 .btn:hover {
     background-color: #0056b3;
+}
+
+.btn.is-hidden {
+    display: none;
 }
