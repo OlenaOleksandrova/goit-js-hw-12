@@ -75,6 +75,7 @@ async function handleLoadMore() {
      }
 }
  
+// Скрол після завантаження партії картинок
 function handleScrollView() {
     const lastArticle = imagesBoxEl.lastElementChild;
     const articleHeight = lastArticle.getBoundingClientRect().height;
