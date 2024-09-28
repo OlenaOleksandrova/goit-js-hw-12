@@ -57,13 +57,15 @@ async function handleLoadMore() {
     currentPage += 1;
     console.log(pages);
     try {
-        handleScrollView();
+       
          const response = await fetchImages(query, currentPage);
         console.log('handleLoadMore:', response);
 
-        const imagesMarkup = renderImages(response.hits);
+ const imagesMarkup = renderImages(response.hits);
         imagesBoxEl.insertAdjacentHTML('beforeend', imagesMarkup);
 
+        handleScrollView();
+        
         if (currentPage >= pages) {
             loadMore.classList.add('is-hidden');
             return "We're sorry, but you've reached the end of search results.";
@@ -76,5 +78,10 @@ async function handleLoadMore() {
 function handleScrollView() {
     const lastArticle = imagesBoxEl.lastElementChild;
     const articleHeight = lastArticle.getBoundingClientRect().height;
-    console.log('handleScrollView', articleHeight)
+    console.log('handleScrollView', articleHeight);
+    window.scrollBy({
+        top: articleHeight * 2,
+        left: 0,
+        behavior: 'smooth',
+    });
 }
