@@ -27,21 +27,21 @@ async function handleSubmit(event) {
         return;
     }
 
+     currentPage = 1;
+
     try {
-       
         const response = await fetchImages(query, currentPage);
         pages = Math.ceil(response.totalHits / PER_PAGE);
         console.log('handleSubmit:', response);
 
-    
         const imagesMarkup = renderImages(response.hits);
         imagesBoxEl.innerHTML = imagesMarkup;
 
-          if (response.totalHits > currentPage * PER_PAGE) {
-            loadMore.classList.remove('is-hidden'); // Показуємо кнопку
-        } else {
-            loadMore.classList.add('is-hidden'); // Ховаємо кнопку
-        }
+         if (response.totalHits > currentPage * PER_PAGE) {
+             loadMore.classList.remove('is-hidden'); // Показ. кнопку
+         } else {
+    loadMore.classList.add('is-hidden'); // Хов. кнопку
+}
 
         // LoadMore.classList.remove('is-hidden'); 
         
@@ -68,7 +68,7 @@ async function handleLoadMore() {
         
         if (currentPage >= pages) {
             loadMore.classList.add('is-hidden');
-            return "We're sorry, but you've reached the end of search results.";
+            console.log("We're sorry, but you've reached the end of search results.");
         }
     } catch (error) {
          console.error('Error:', error);
@@ -78,11 +78,14 @@ async function handleLoadMore() {
 // Скрол після завантаження партії картинок
 function handleScrollView() {
     const lastArticle = imagesBoxEl.lastElementChild;
-    const articleHeight = lastArticle.getBoundingClientRect().height;
-    console.log('handleScrollView', articleHeight);
-    window.scrollBy({
-        top: articleHeight * 2,
-        left: 0,
-        behavior: 'smooth',
-    });
+    if (lastArticle) {
+        const articleHeight = lastArticle.getBoundingClientRect().height;
+        window.scrollBy({
+            top: articleHeight * 2,
+            left: 0,
+            behavior: 'smooth',
+        });
+    } else {
+        console.error('Were sorry, but you have reached the end of search results.');
+    }
 }
