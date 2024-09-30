@@ -62,7 +62,8 @@ async function handleLoadMore() {
         console.log('handleLoadMore:', response);
 
  const imagesMarkup = renderImages(response.hits);
-        imagesBoxEl.insertAdjacentHTML('beforeend', imagesMarkup);
+        // imagesBoxEl.insertAdjacentHTML('beforeend', imagesMarkup);
+        imagesBoxEl.innerHTML = imagesMarkup;
 
         handleScrollView();
         
