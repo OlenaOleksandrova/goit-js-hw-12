@@ -13,16 +13,17 @@ const messageBox = document.querySelector('.message');
 let currentPage = 1;
 let query = null;
 let pages = 0;
+let gallery;
 
 // подія форми
 
 searchForm.addEventListener('submit', handleSubmit);
 loadMore.addEventListener('click', handleLoadMore);
    
-let gallery = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});  
+// let gallery = new SimpleLightbox('.gallery a', {
+//   captionsData: 'alt',
+//   captionDelay: 250,
+// });  
 
 async function handleSubmit(event) {
     event.preventDefault();
@@ -51,12 +52,17 @@ async function handleSubmit(event) {
         const imagesMarkup = renderImages(response.hits);
         imagesBoxEl.innerHTML = imagesMarkup;
 
-        gallery.refresh();
+         gallery = new SimpleLightbox('.gallery a', {
+            captionsData: 'alt',
+            captionDelay: 250,
+        }); 
+
+        // gallery.refresh();
 
          if (response.totalHits > currentPage * PER_PAGE) {
              loadMore.classList.remove('is-hidden'); // Показ. кнопку
          } else {
-    loadMore.classList.add('is-hidden'); // Хов. кнопку
+             loadMore.classList.add('is-hidden'); // Хов. кнопку
 }
 
         // LoadMore.classList.remove('is-hidden'); 
@@ -107,6 +113,7 @@ function showMessage(message) {
     // Сховати повідомлення
     setTimeout(() => {
         messageBox.classList.add('is-hidden'); 
+        messageBox.textContent = ''; 
     }, 3000);
 }
  
